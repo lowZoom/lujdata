@@ -1,20 +1,16 @@
 package luj.data.internal.type.field;
 
 import luj.data.api.field.TypeInField;
-import luj.data.api.field.type.JInt;
-import luj.data.api.field.type.JLong;
 import luj.data.api.field.type.JMap;
-import luj.data.api.field.type.JStr;
 
 import java.lang.reflect.Type;
+import java.util.Set;
 
 final class TypeImpl implements TypeInField {
 
   @Override
   public boolean isPrimitive() {
-    return _clazz == JInt.class
-        || _clazz == JLong.class
-        || _clazz == JStr.class;
+    return _primitiveSet.contains(_clazz);
   }
 
   @Override
@@ -38,6 +34,7 @@ final class TypeImpl implements TypeInField {
   }
 
   Class<?> _clazz;
-
   Type _generic;
+
+  Set<Class<?>> _primitiveSet;
 }

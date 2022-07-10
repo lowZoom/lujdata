@@ -1,8 +1,10 @@
 package luj.data.internal.type.field;
 
+import com.google.common.collect.ImmutableSet;
 import luj.ava.reflect.type.TypeX;
 
 import java.lang.reflect.Type;
+import java.util.Set;
 
 enum TypeMapFactory {
   GET;
@@ -20,6 +22,13 @@ enum TypeMapFactory {
   private TypeImpl makeType(TypeX<?> tx) {
     TypeImpl type = new TypeImpl();
     type._clazz = tx.asClass();
+    type._primitiveSet = PRIMITIVE;
     return type;
   }
+
+  static final Set<Class<?>> PRIMITIVE = ImmutableSet.of(
+      Integer.class,
+      Long.class,
+      String.class
+  );
 }
